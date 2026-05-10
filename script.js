@@ -24,7 +24,7 @@ Also suggest best idea.`;
 
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyCZFWu7ZQB3y8zcdfIjxbm7ZGuurj8qJG8",
+      "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyAcEEflgCOumWQ39hikDNlLw-BurIykN4g",
       {
         method: "POST",
         headers: {
