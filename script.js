@@ -1,3 +1,5 @@
+console.log("JS Loaded");
+
 async function generateIdeas() {
   const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
@@ -6,8 +8,7 @@ async function generateIdeas() {
   const output = document.getElementById("output");
   output.innerText = "Generating...";
 
-  const prompt = `
-Act as an expert startup mentor.
+  const prompt = `Act as an expert startup mentor.
 
 Suggest 3 business ideas based on:
 Budget: ₹${budget}
@@ -19,12 +20,12 @@ For each:
 2. Why it works
 3. Steps
 4. Earning
-Also suggest best idea.
-`;
+Also suggest best idea.`;
 
   try {
     const response = await fetch(
-      https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyBD-xAQqFa4aqA6fWgo8bPvj8MaYmZUKtE      {
+      "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyD8V0P_eGEohedfSlfTnntdt5DLTGi82ng",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -40,7 +41,7 @@ Also suggest best idea.
     );
 
     const data = await response.json();
-    console.log(data); // DEBUG
+    console.log(data);
 
     if (!data.candidates) {
       output.innerText = "Error: " + JSON.stringify(data);
