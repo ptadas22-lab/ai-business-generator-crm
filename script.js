@@ -3,6 +3,12 @@ async function generateIdeas() {
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
 
+  // Validate inputs
+  if (!budget || !location || !type) {
+    document.getElementById("output").innerText = "Please fill in all fields: Budget, Location, and Type.";
+    return;
+  }
+
   const output = document.getElementById("output");
   output.innerText = "Generating...";
 
@@ -14,36 +20,38 @@ Budget: ₹${budget}
 Location: ${location}
 Type: ${type}
 
-For each:
+For each idea provide:
 1. Idea Name
 2. Why it works
-3. Steps
-4. Earning
-Also suggest best idea.
+3. Steps to start
+4. Earning potential
+Also suggest the best idea among the three.
 `;
 
   try {
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyD8V0P_eGEohedfSlfTnntdt5DLTGi82ng",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{ text: prompt }]
-          }]
-        })
-      }
-    );
+    // Call backend API instead of directly calling Google API
+    const response = await fetch("/api/generate-ideas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error! Status: ${response.status}`);
+    }
 
     const data = await response.json();
-
-    output.innerText =
-      data.candidates[0].content.parts[0].text;
+    
+    if (data.error) {
+      output.innerText = `Error: ${data.error}`;
+    } else {
+      output.innerText = data.ideas || "No ideas generated. Please try again.";
+    }
 
   } catch (err) {
-    output.innerText = "Error generating ideas.";
+    console.error("Full error details:", err);
+    output.innerText = `Error generating ideas: ${err.message}. Please check console for details.`;
   }
 }
