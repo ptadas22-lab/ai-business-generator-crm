@@ -33,9 +33,7 @@ Also suggest best idea.
         body: JSON.stringify({
           contents: [
             {
-              parts: [
-                { text: prompt }
-              ]
+              parts: [{ text: prompt }]
             }
           ]
         })
@@ -43,7 +41,6 @@ Also suggest best idea.
     );
 
     const data = await response.json();
-
     console.log(data); // DEBUG
 
     if (!data.candidates) {
@@ -55,6 +52,6 @@ Also suggest best idea.
       data.candidates[0].content.parts[0].text;
 
   } catch (error) {
-    output.innerText = "Error generating ideas: " + error.message;
+    output.innerText = "Error: " + error.message;
   }
 }
