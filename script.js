@@ -32,10 +32,6 @@ function generateIdeas() {
     output.innerHTML = "❌ Error: " + err.message;
   });
 }
-
-
-   }
-
 // Create Card (clean reusable)
 function createCard(name, location, profit) {
   return `
