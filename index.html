@@ -5,98 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #020617);
-    color: white;
-    margin: 0;
-  }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: white;
+      margin: 0;
+    }
 
-  .container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-  }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
 
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+    h2 {
+      text-align: center;
+    }
 
-  input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 10px;
-    border: none;
-    background: #1e293b;
-    color: white;
-  }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      background: #1e293b;
+      color: white;
+    }
 
-  input::placeholder {
-    color: #94a3b8;
-  }
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-  button {
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+    .primary {
+      width: 100%;
+      margin-top: 15px;
+      background: #22c55e;
+      color: black;
+    }
 
-  .primary {
-    width: 100%;
-    background: #22c55e;
-    color: black;
-  }
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 16px;
+    }
 
-  .card {
-    background: #1e293b;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 16px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
-  }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
 
-  .card:hover {
-    transform: scale(1.02);
-  }
+    .start { background: #3b82f6; color: white; }
+    .save { background: #facc15; color: black; }
+    .share { background: #22c55e; color: black; }
+    .delete { background: red; color: white; }
 
-  .actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-  }
+    .plan {
+      background: #020617;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
 
-  .start { background: #3b82f6; color: white; }
-  .save { background: #facc15; color: black; }
-  .share { background: #22c55e; color: black; }
-
-  .plan {
-    background: #020617;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 12px;
-  }
-
-  .saved-card {
-    background: #1e293b;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .delete {
-    background: #ef4444;
-    color: white;
-  }
-</style>
+    .saved-card {
+      background: #1e293b;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -108,14 +92,18 @@
 
 <input id="budget" placeholder="Enter Budget ₹">
 <input id="location" placeholder="Enter Location">
-<input id="type" placeholder="Business Type (food, oil, etc)">
+<input id="type" placeholder="Business Type">
 
-<button onclick="generateIdeas()">Generate Ideas</button>
+<button class="primary" onclick="generateIdeas()">Generate Ideas</button>
 
 <div id="output"></div>
-  <h3>Saved Ideas</h3>
+
+<h3>Saved Ideas</h3>
 <div id="saved"></div>
-<script src="script.js?v=25"></script>
+
+</div>
+
+<script src="script.js?v=30"></script>
 
 </body>
 </html>
