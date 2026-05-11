@@ -8,64 +8,77 @@ function generateIdeas() {
   output.innerHTML = "<p>⚡ Generating smart ideas...</p>";
 
   setTimeout(() => {
-
     output.innerHTML = `
     
     <div class="card">
       <h3>${type} Shop</h3>
       <p>High demand in ${location}</p>
       <p><b>Profit:</b> ₹15K/month</p>
-      <button onclick="startBusiness('Shop')">Start This</button>
+      <button onclick="startBusiness('${type} Shop')">Start This</button>
+      <button onclick="saveIdea('${type} Shop')">Save</button>
     </div>
 
     <div class="card">
       <h3>Home ${type} Business</h3>
       <p>Low cost, easy start</p>
       <p><b>Profit:</b> ₹20K/month</p>
-      <button onclick="saveIdea('${type} Shop')">Save</button>
+      <button onclick="startBusiness('Home ${type}')">Start This</button>
+      <button onclick="saveIdea('Home ${type}')">Save</button>
     </div>
-    <h3>Saved Ideas</h3>
-<div id="saved"></div>
-<div class="card">
+
+    <div class="card">
       <h3>Street ${type} Stall</h3>
       <p>Fast cash flow</p>
       <p><b>Profit:</b> ₹10K/month</p>
-      <button onclick="startBusiness('Stall')">Start This</button>
+      <button onclick="startBusiness('Street ${type}')">Start This</button>
+      <button onclick="saveIdea('Street ${type}')">Save</button>
     </div>
 
     `;
+
+    loadSaved(); // refresh saved ideas after generation
 
   }, 800);
 }
 
 
-function loadSaved() {
-  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-  const savedDiv = document.getElementById("saved");
+function startBusiness(name) {
+  const output = document.getElementById("output");
 
-  savedDiv.innerHTML = saved.map(i => `<p>✅ ${i}</p>`).join("");
-}
-
-window.onload = loadSaved;
-
+  output.innerHTML += `
   <div class="plan">
-    <h3>📈 ${type} Business Plan</h3>
+    <h3>📈 ${name} Plan</h3>
 
-    <p><b>Step 1:</b> Research your local market</p>
-    <p><b>Step 2:</b> Buy basic materials</p>
-    <p><b>Step 3:</b> Start small from home or street</p>
-    <p><b>Step 4:</b> Promote via WhatsApp & Instagram</p>
-    <p><b>Step 5:</b> Reinvest profits to grow</p>
+    <p><b>Step 1:</b> Research local market</p>
+    <p><b>Step 2:</b> Buy materials</p>
+    <p><b>Step 3:</b> Start small</p>
+    <p><b>Step 4:</b> Promote via WhatsApp</p>
+    <p><b>Step 5:</b> Grow gradually</p>
 
-    <p><b>Expected Monthly Profit:</b> ₹15K–₹30K</p>
+    <p><b>Profit:</b> ₹15K–₹30K/month</p>
   </div>
-
   `;
 }
+
+
 function saveIdea(name) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
   saved.push(name);
   localStorage.setItem("ideas", JSON.stringify(saved));
 
   alert("Saved!");
+  loadSaved();
 }
+
+
+function loadSaved() {
+  const savedDiv = document.getElementById("saved");
+  if (!savedDiv) return;
+
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+
+  savedDiv.innerHTML = saved.map(i => `<p>✅ ${i}</p>`).join("");
+}
+
+
+window.onload = loadSaved;
