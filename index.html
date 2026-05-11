@@ -2,21 +2,81 @@
 <html>
 <head>
   <title>AI Business Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #22c55e;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 12px;
+    }
+
+    .card button {
+      margin-top: 10px;
+      background: #3b82f6;
+      color: white;
+    }
+
+    .plan {
+      background: #020617;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>AI Business Idea Generator</h2>
+<div class="container">
 
-<input id="budget" placeholder="Budget ₹"><br><br>
-<input id="location" placeholder="Location"><br><br>
-<input id="type" placeholder="Type"><br><br>
+<h2>🚀 AI Business Generator</h2>
 
-<button onclick="generateIdeas()">Generate Plan</button>
+<input id="budget" placeholder="Enter Budget ₹">
+<input id="location" placeholder="Enter Location">
+<input id="type" placeholder="Business Type (food, oil, etc)">
 
-<pre id="output"></pre>
+<button onclick="generateIdeas()">Generate Ideas</button>
 
-<!-- IMPORTANT: cache buster added -->
-<script src="script.js?v=2"></script>
+<div id="output"></div>
+
+</div>
+
+<script src="script.js?v=5"></script>
 
 </body>
 </html>
