@@ -82,21 +82,42 @@ function loadSaved() {
 
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
+  console.log("Saved Data:", saved); // DEBUG
+
   if (saved.length === 0) {
     savedDiv.innerHTML = "<p>No saved ideas yet</p>";
     return;
   }
 
-  savedDiv.innerHTML = saved
-    .map(
-      (i, index) => `
-      <div>
-        ✅ ${i}
-        <button onclick="deleteIdea(${index})">❌</button>
+  savedDiv.innerHTML = saved.map((item, index) => {
+    return `
+      <div style="
+        background:#1e293b;
+        padding:10px;
+        margin:8px 0;
+        border-radius:8px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      ">
+        <span>✅ ${item}</span>
+
+        <button 
+          onclick="deleteIdea(${index})"
+          style="
+            background:red;
+            color:white;
+            border:none;
+            padding:6px 10px;
+            border-radius:6px;
+            cursor:pointer;
+          "
+        >
+          Delete
+        </button>
       </div>
-    `
-    )
-    .join("");
+    `;
+  }).join("");
 }
 
 
