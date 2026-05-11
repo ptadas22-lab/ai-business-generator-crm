@@ -19,6 +19,7 @@ function generateIdeas() {
       <p><b>Profit:</b> ₹15K/month</p>
       <button onclick="startBusiness('${type} Shop')">Start</button>
       <button onclick="saveIdea('${type} Shop')">Save</button>
+      <button onclick="shareIdea('Street ${type}')">Share</button>
     </div>
 
     <div class="card">
@@ -27,6 +28,7 @@ function generateIdeas() {
       <p><b>Profit:</b> ₹20K/month</p>
       <button onclick="startBusiness('Home ${type}')">Start</button>
       <button onclick="saveIdea('Home ${type}')">Save</button>
+      <button onclick="shareIdea('Street ${type}')">Share</button>
     </div>
 
     <div class="card">
@@ -35,6 +37,7 @@ function generateIdeas() {
       <p><b>Profit:</b> ₹10K/month</p>
       <button onclick="startBusiness('Street ${type}')">Start</button>
       <button onclick="saveIdea('Street ${type}')">Save</button>
+      <button onclick="shareIdea('Street ${type}')">Share</button>
     </div>
 
     `;
@@ -104,6 +107,10 @@ function loadSaved() {
 
         <button 
           onclick="deleteIdea(${index})"
+          <div ...>
+ <button onclick="shareIdea('${item}')">Share</button>
+  </div>
+</div>
           style="
             background:red;
             color:white;
@@ -115,6 +122,20 @@ function loadSaved() {
         >
           Delete
         </button>
+        <button 
+  onclick="shareIdea('${item}')"
+  style="
+    background:green;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-left:5px;
+  "
+>
+  Share
+</button>
       </div>
     `;
   }).join("");
@@ -133,5 +154,12 @@ function deleteIdea(index) {
 }
 
 
-// 🔹 Load on start
+// 🔹 share idea
+function shareIdea(name) {
+  const text = `🚀 Check this business idea:\n\n${name}\n\nGenerated using my AI App`;
+
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+
+  window.open(url, "_blank");
+}
 window.onload = loadSaved;
