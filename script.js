@@ -156,7 +156,14 @@ function deleteIdea(index) {
 
 // 🔹 share idea
 function shareIdea(name) {
-  const text = `🚀 Check this business idea:\n\n${name}\n\nGenerated using my AI App`;
+  const appLink = "https://your-username.github.io/ai-business-generator-crm/";
+
+  const text = `🚀 Check this business idea:
+
+${name}
+
+💡 I found this using an AI Business Generator.
+Try it here 👉 ${appLink}`;
 
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
 
