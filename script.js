@@ -5,7 +5,7 @@ function generateIdeas() {
 
   const output = document.getElementById("output");
 
-  output.innerHTML = "Generating ideas...";
+  output.innerHTML = "<p>⚡ Generating smart ideas...</p>";
 
   setTimeout(() => {
 
@@ -22,10 +22,11 @@ function generateIdeas() {
       <h3>Home ${type} Business</h3>
       <p>Low cost, easy start</p>
       <p><b>Profit:</b> ₹20K/month</p>
-      <button onclick="startBusiness('Home')">Start This</button>
+      <button onclick="saveIdea('${type} Shop')">Save</button>
     </div>
-
-    <div class="card">
+    <h3>Saved Ideas</h3>
+<div id="saved"></div>
+<div class="card">
       <h3>Street ${type} Stall</h3>
       <p>Fast cash flow</p>
       <p><b>Profit:</b> ₹10K/month</p>
@@ -38,10 +39,14 @@ function generateIdeas() {
 }
 
 
-function startBusiness(type) {
-  const output = document.getElementById("output");
+function loadSaved() {
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+  const savedDiv = document.getElementById("saved");
 
-  output.innerHTML += `
+  savedDiv.innerHTML = saved.map(i => `<p>✅ ${i}</p>`).join("");
+}
+
+window.onload = loadSaved;
 
   <div class="plan">
     <h3>📈 ${type} Business Plan</h3>
@@ -56,4 +61,11 @@ function startBusiness(type) {
   </div>
 
   `;
+}
+function saveIdea(name) {
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+  saved.push(name);
+  localStorage.setItem("ideas", JSON.stringify(saved));
+
+  alert("Saved!");
 }
