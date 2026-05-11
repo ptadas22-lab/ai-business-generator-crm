@@ -5,82 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      color: white;
-      margin: 0;
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  margin: 0;
+}
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-      padding: 20px;
-    }
+/* Layout */
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 20px;
+}
 
-    h2 {
-      text-align: center;
-    }
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: none;
-      background: #1e293b;
-      color: white;
-    }
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #1e293b;
+  color: white;
+  transition: 0.2s ease;
+}
 
-    button {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
+input:focus {
+  outline: 2px solid #22c55e;
+  background: #0f172a;
+}
 
-    .primary {
-      width: 100%;
-      margin-top: 15px;
-      background: #22c55e;
-      color: black;
-    }
+/* Buttons */
+button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
 
-    .card {
-      background: #1e293b;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 16px;
-    }
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
 
-    .actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
+/* Primary button */
+.primary {
+  width: 100%;
+  margin-top: 15px;
+  background: #22c55e;
+  color: black;
+}
 
-    .start { background: #3b82f6; color: white; }
-    .save { background: #facc15; color: black; }
-    .share { background: #22c55e; color: black; }
-    .delete { background: red; color: white; }
+/* Card */
+.card {
+  background: #1e293b;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: 0.2s ease;
+}
 
-    .plan {
-      background: #020617;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 12px;
-    }
+.card:hover {
+  transform: translateY(-2px);
+}
 
-    .saved-card {
-      background: #1e293b;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Action colors */
+.start { background: #3b82f6; color: white; }
+.save { background: #facc15; color: black; }
+.share { background: #22c55e; color: black; }
+.delete { background: red; color: white; }
+
+/* Plan section */
+.plan {
+  background: #020617;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Saved card */
+.saved-card {
+  background: #1e293b;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
   </style>
 </head>
 
