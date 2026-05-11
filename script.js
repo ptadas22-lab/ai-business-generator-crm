@@ -1,6 +1,6 @@
 console.log("JS LOADED");
 
-// 🔹 Generate Ideas
+// Generate Ideas
 function generateIdeas() {
   const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
@@ -8,64 +8,56 @@ function generateIdeas() {
 
   const output = document.getElementById("output");
 
-  output.innerHTML = "<p>⚡ Generating smart ideas...</p>";
+  output.innerHTML = "⚡ Generating ideas...";
 
   setTimeout(() => {
     output.innerHTML = `
     
-    <div class="card">
-      <h3>${type} Shop</h3>
-      <p>High demand in ${location}</p>
-      <p><b>Profit:</b> ₹15K/month</p>
-      <button onclick="startBusiness('${type} Shop')">Start</button>
-      <button onclick="saveIdea('${type} Shop')">Save</button>
-      <button onclick="shareIdea('Street ${type}')">Share</button>
-    </div>
-
-    <div class="card">
-      <h3>Home ${type} Business</h3>
-      <p>Low cost, easy start</p>
-      <p><b>Profit:</b> ₹20K/month</p>
-      <button onclick="startBusiness('Home ${type}')">Start</button>
-      <button onclick="saveIdea('Home ${type}')">Save</button>
-      <button onclick="shareIdea('Street ${type}')">Share</button>
-    </div>
-
-    <div class="card">
-      <h3>Street ${type} Stall</h3>
-      <p>Fast cash flow</p>
-      <p><b>Profit:</b> ₹10K/month</p>
-      <button onclick="startBusiness('Street ${type}')">Start</button>
-      <button onclick="saveIdea('Street ${type}')">Save</button>
-      <button onclick="shareIdea('Street ${type}')">Share</button>
-    </div>
-
+    ${createCard(type + " Shop", location, "₹15K/month")}
+    ${createCard("Home " + type, location, "₹20K/month")}
+    ${createCard("Street " + type, location, "₹10K/month")}
+    
     `;
 
-    loadSaved(); //
+    loadSaved();
 
   }, 600);
 }
 
-// 🔹 Start Business Flow
+// Create Card (clean reusable)
+function createCard(name, location, profit) {
+  return `
+  <div class="card">
+    <h3>${name}</h3>
+    <p>High demand in ${location}</p>
+    <p><b>Profit:</b> ${profit}</p>
+
+    <div class="actions">
+      <button class="start" onclick="startBusiness('${name}')">Start</button>
+      <button class="save" onclick="saveIdea('${name}')">Save</button>
+      <button class="share" onclick="shareIdea('${name}')">Share</button>
+    </div>
+  </div>
+  `;
+}
+
+// Start Business Plan
 function startBusiness(name) {
   const output = document.getElementById("output");
 
   output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
-      <p><b>Step 1:</b> Research local market</p>
-      <p><b>Step 2:</b> Buy materials</p>
-      <p><b>Step 3:</b> Start small</p>
-      <p><b>Step 4:</b> Promote via WhatsApp</p>
-      <p><b>Step 5:</b> Grow gradually</p>
-      <p><b>Profit:</b> ₹15K–₹30K/month</p>
+      <p>Step 1: Research market</p>
+      <p>Step 2: Buy materials</p>
+      <p>Step 3: Start small</p>
+      <p>Step 4: Promote via WhatsApp</p>
+      <p>Step 5: Grow gradually</p>
     </div>
   `;
 }
 
-
-// 🔹 Save Idea
+// Save Idea
 function saveIdea(name) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
@@ -77,96 +69,54 @@ function saveIdea(name) {
   loadSaved();
 }
 
-
-// 🔹 Load Saved Ideas
+// Load Saved Ideas
 function loadSaved() {
   const savedDiv = document.getElementById("saved");
   if (!savedDiv) return;
 
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  console.log("Saved Data:", saved); // DEBUG
-
   if (saved.length === 0) {
     savedDiv.innerHTML = "<p>No saved ideas yet</p>";
     return;
   }
 
-  savedDiv.innerHTML = saved.map((item, index) => {
-    return `
-      <div style="
-        background:#1e293b;
-        padding:10px;
-        margin:8px 0;
-        border-radius:8px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      ">
-        <span>✅ ${item}</span>
+  savedDiv.innerHTML = saved.map((item, index) => `
+    <div class="saved-card">
+      <span>✅ ${item}</span>
 
-        <button 
-          onclick="deleteIdea(${index})"
-          <div ...>
- <button onclick="shareIdea('${item}')">Share</button>
-  </div>
-</div>
-          style="
-            background:red;
-            color:white;
-            border:none;
-            padding:6px 10px;
-            border-radius:6px;
-            cursor:pointer;
-          "
-        >
-          Delete
-        </button>
-        <button 
-  onclick="shareIdea('${item}')"
-  style="
-    background:green;
-    color:white;
-    border:none;
-    padding:6px 10px;
-    border-radius:6px;
-    cursor:pointer;
-    margin-left:5px;
-  "
->
-  Share
-</button>
+      <div class="actions">
+        <button class="delete" onclick="deleteIdea(${index})">Delete</button>
+        <button class="share" onclick="shareIdea('${item}')">Share</button>
       </div>
-    `;
-  }).join("");
+    </div>
+  `).join("");
 }
 
-
-// 🔹 Delete Idea
+// Delete Idea
 function deleteIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
   saved.splice(index, 1);
-
   localStorage.setItem("ideas", JSON.stringify(saved));
 
   loadSaved();
 }
 
-
-// 🔹 share idea
+// Share Idea (WhatsApp)
 function shareIdea(name) {
-  const appLink = "https://your-username.github.io/ai-business-generator-crm/";
+  const appLink = "https://your-username.github.io/your-repo-name/";
 
-  const text = `🚀 Check this business idea:
+  const text = `🚀 Business Idea:
 
 ${name}
 
-💡 I found this using an AI Business Generator.
-Try it here 👉 ${appLink}`;
+Try this app 👉 ${appLink}`;
 
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
 
   window.open(url, "_blank");
 }
+
+// Load on start
 window.onload = loadSaved;
