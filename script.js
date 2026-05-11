@@ -8,21 +8,36 @@ function generateIdeas() {
 
   const output = document.getElementById("output");
 
-  output.innerHTML = "⚡ Generating ideas...";
+  // 🔹 Show loading
+  output.innerHTML = "⚡ Generating with AI...";
 
-  setTimeout(() => {
+  // 🔹 Call backend
+  fetch("http://localhost:3000/generate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      budget: budget,
+      location: location,
+      type: type
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    // 🔹 Show result
     output.innerHTML = `
-    
-    ${createCard(type + " Shop", location, "₹15K/month")}
-    ${createCard("Home " + type, location, "₹20K/month")}
-    ${createCard("Street " + type, location, "₹10K/month")}
-    
+      <div class="card">
+        <h3>🤖 AI Generated Ideas</h3>
+        <pre style="white-space: pre-wrap;">${data.result}</pre>
+      </div>
     `;
-
-    loadSaved();
-
-  }, 600);
+  })
+  .catch(err => {
+    output.innerHTML = "❌ Error: " + err.message;
+  });
 }
+   }
 
 // Create Card (clean reusable)
 function createCard(name, location, profit) {
