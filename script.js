@@ -1,57 +1,32 @@
-console.log("JS Loaded");
-
-async function generateIdeas() {
+function generateIdeas() {
   const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
 
   const output = document.getElementById("output");
+
   output.innerText = "Generating...";
 
-  const prompt = `Act as an expert startup mentor.
+  setTimeout(() => {
+    output.innerText = `
+Top 3 Business Ideas for ${location} under ₹${budget}:
 
-Suggest 3 business ideas based on:
-Budget: ₹${budget}
-Location: ${location}
-Type: ${type}
+1. ${type} Shop
+- Low investment
+- High demand
+- Profit: ₹15,000/month
 
-For each:
-1. Idea Name
-2. Why it works
-3. Steps
-4. Earning
-Also suggest best idea.`;
+2. Home-based ${type} Service
+- Start from home
+- Easy marketing
+- Profit: ₹20,000/month
 
-  try {
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyAcEEflgCOumWQ39hikDNlLw-BurIykN4g",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }]
-            }
-          ]
-        })
-      }
-    );
+3. Street ${type} Stall
+- High footfall
+- Fast cash flow
+- Profit: ₹10,000/month
 
-    const data = await response.json();
-    console.log(data);
-
-    if (!data.candidates) {
-      output.innerText = "Error: " + JSON.stringify(data);
-      return;
-    }
-
-    output.innerText =
-      data.candidates[0].content.parts[0].text;
-
-  } catch (error) {
-    output.innerText = "Error: " + error.message;
-  }
+Best Idea: Start with Home-based ${type} Service 🚀
+`;
+  }, 1000);
 }
