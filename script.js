@@ -12,8 +12,6 @@ function generateIdeas() {
 
   setTimeout(() => {
     output.innerHTML = `
-  ...
-`;`
     
     <div class="card">
       <h3>${type} Shop</h3>
@@ -41,9 +39,10 @@ function generateIdeas() {
 
     `;
 
+    loadSaved(); //
+
   }, 600);
 }
-
 
 // 🔹 Start Business Flow
 function startBusiness(name) {
