@@ -2,6 +2,7 @@ console.log("JS LOADED");
 
 // Generate Ideas
 function generateIdeas() {
+  console.log("Button clicked!");
   const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
