@@ -3,30 +3,24 @@ console.log("JS LOADED");
 // Generate Ideas
 function generateIdeas() {
   console.log("Button clicked!");
+
   const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
 
   const output = document.getElementById("output");
 
-  // 🔹 Show loading
   output.innerHTML = "⚡ Generating with AI...";
 
-  // 🔹 Call backend
   fetch("http://localhost:3000/generate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      budget: budget,
-      location: location,
-      type: type
-    })
+    body: JSON.stringify({ budget, location, type })
   })
   .then(res => res.json())
   .then(data => {
-    // 🔹 Show result
     output.innerHTML = `
       <div class="card">
         <h3>🤖 AI Generated Ideas</h3>
@@ -38,6 +32,8 @@ function generateIdeas() {
     output.innerHTML = "❌ Error: " + err.message;
   });
 }
+
+
    }
 
 // Create Card (clean reusable)
