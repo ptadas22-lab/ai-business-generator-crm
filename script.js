@@ -28,7 +28,7 @@ fetch("http://localhost:3000/generate", {
     const name = idea.split("\n")[0] || `Idea ${index + 1}`;
 
     const profitMatch = idea.match(/profit.*$/i);
-    const profit = profitMatch ? profitMatch[0] : "Profit: ₹10K–₹30K/month";
+    const profit = profitMatch  ? profitMatch[0].replace(/Profit:\s*/i, "") : "₹10K–₹30K/month";
 
     return createCard(name, location, profit);
 
@@ -42,11 +42,10 @@ fetch("http://localhost:3000/generate", {
 function createCard(name, location, profit) {
   return `
   <div class="card">
-    <h3>{name}</h3>
+    <h3>${name}</h3>
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
-      <div class="actions">
       <button onclick="startBusiness('${name}')">Start</button>
       <button onclick="saveIdea('${name}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
