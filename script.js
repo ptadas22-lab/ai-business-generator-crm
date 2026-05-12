@@ -40,9 +40,9 @@ function createCard(name, location, profit) {
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
-      <button class="start" onclick="startBusiness('${name}')">Start</button>
-      <button class="save" onclick="saveIdea('${name}')">Save</button>
-      <button class="share" onclick="shareIdea('${name}')">Share</button>
+      <button onclick="startBusiness('AI Idea')">Start</button>
+<button onclick="saveIdea(data.result)">Save</button>
+<button onclick="shareIdea(data.result)">Share</button>
     </div>
   </div>
   `;
