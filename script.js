@@ -34,7 +34,6 @@ fetch("http://localhost:3000/generate", {
 
   }).join("");
 </div>
-</div>
     `;
   })
   .catch(err => {
