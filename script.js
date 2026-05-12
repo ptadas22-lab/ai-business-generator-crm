@@ -21,9 +21,9 @@ fetch("http://localhost:3000/generate", {
         <h3>🤖 AI Generated Ideas</h3>
         <pre style="white-space: pre-wrap;">${data.result}</pre>
         <div class="actions" style="margin-top:15px;">
-      <button class="start" onclick="startBusiness(\`${name}\`)">Start</button>
-<button class="save" onclick="saveIdea(\`${name} | ${why} | ${profit}\`)">Save</button>
-<button class="share" onclick="shareIdea(\`${name} | ${why} | ${profit}\`)">Share</button>
+      <button class="start" onclick="startBusiness(`${name}`)">Start</button>
+<button class="save" onclick="saveIdea(`${ideaText}`)">Save</button>
+<button class="share" onclick="shareIdea(`${ideaText}`)">Share</button>
       </div>
       </div>
     `;
