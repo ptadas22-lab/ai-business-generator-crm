@@ -23,8 +23,8 @@ fetch("http://localhost:3000/generate", {
         <div class="actions" style="margin-top:15px;">
     <div class="actions" style="margin-top:15px;">
   <button onclick="startBusiness('AI Idea')">Start</button>
-  <button onclick="saveIdea('${data.result}')">Save</button>
-  <button onclick="shareIdea('${data.result}')">Share</button>
+  <button onclick="saveIdea({data.result}')">Save</button>
+  <button onclick="shareIdea({data.result}')">Share</button>
 </div>
 </div>
     `;
