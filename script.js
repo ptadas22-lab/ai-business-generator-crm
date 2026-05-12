@@ -52,8 +52,7 @@ function createCard(name, location, profit) {
 // Start Business Plan
 function startBusiness(name) {
   const output = document.getElementById("output");
-}
-  output.innerHTML += `
+output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
       <p>Step 1: Research market</p>
