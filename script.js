@@ -42,7 +42,7 @@ fetch("http://localhost:3000/generate", {
 function createCard(name, location, profit) {
   return `
   <div class="card">
-    <h3>${name}</h3>
+    <h3>{name}</h3>
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
