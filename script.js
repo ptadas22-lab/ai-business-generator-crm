@@ -25,6 +25,7 @@ fetch("http://localhost:3000/generate", {
       <button class="save" onclick="saveIdea('AI Idea')">Save</button>
       <button class="share" onclick="shareIdea('AI Idea')">Share</button>
       </div>
+      </div>
     `;
   })
   .catch(err => {
