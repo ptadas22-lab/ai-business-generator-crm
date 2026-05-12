@@ -33,8 +33,7 @@ fetch("http://localhost:3000/generate", {
     return createCard(name, location, profit);
 
   }).join("");
-</div>
-    `;
+`;
   })
   .catch(err => {
     output.innerHTML = "❌ Error: " + err.message;
