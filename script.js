@@ -120,6 +120,10 @@ Try this app 👉 ${appLink}`;
 
   window.open(url, "_blank");
 }
-
+window.deleteIdea = deleteIdea;
+window.saveIdea = saveIdea;
+window.shareIdea = shareIdea;
+window.startBusiness = startBusiness;
+}
 // Load on start
 window.onload = loadSaved;
