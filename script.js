@@ -21,7 +21,7 @@ fetch("http://localhost:3000/generate", {
         <h3>🤖 AI Generated Ideas</h3>
         <pre style="white-space: pre-wrap;">${data.result}</pre>
         <div class="actions" style="margin-top:15px;">
-      <button class="start" onclick="startBusiness(`AI Idea`)">Start</button>
+      <button class="start" onclick="startBusiness(AI Idea)">Start</button>
 <button class="save" onclick="saveIdea(`${data result}`)">Save</button>
 <button class="share" onclick="shareIdea(`${data result}`)">Share</button>
       </div>
@@ -40,9 +40,10 @@ function createCard(name, location, profit) {
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
-      <button onclick="startBusiness('AI Idea')">Start</button>
-<button onclick="saveIdea(data.result)">Save</button>
-<button onclick="shareIdea(data.result)">Share</button>
+      <div class="actions">
+      <button onclick="startBusiness('${name}')">Start</button>
+      <button onclick="saveIdea('${name}')">Save</button>
+      <button onclick="shareIdea('${name}')">Share</button>
     </div>
   </div>
   `;
