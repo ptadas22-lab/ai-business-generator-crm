@@ -1,5 +1,4 @@
 console.log("JS LOADED");
-
 // Generate Ideas
 function generateIdeas() {
   console.log("Button clicked!");
@@ -35,8 +34,7 @@ function createCard(name, location, profit) {
     <h3>${name}</h3>
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
-
-    <div class="actions">
+<div class="actions">
       <button class="start" onclick="startBusiness('${name}')">Start</button>
       <button class="save" onclick="saveIdea('${name}')">Save</button>
       <button class="share" onclick="shareIdea('${name}')">Share</button>
@@ -44,7 +42,6 @@ function createCard(name, location, profit) {
   </div>
   `;
 }
-
 // Start Business Plan
 function startBusiness(name) {
   const output = document.getElementById("output");
@@ -59,7 +56,6 @@ output.innerHTML += `
     </div>
   `;
 }
-
 // Save Idea
 function saveIdea(name) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
@@ -68,62 +64,46 @@ function saveIdea(name) {
     saved.push(name);
     localStorage.setItem("ideas", JSON.stringify(saved));
   }
-
-  loadSaved();
+ loadSaved();
 }
-
 // Load Saved Ideas
 function loadSaved() {
   const savedDiv = document.getElementById("saved");
   if (!savedDiv) return;
-
-  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-
-  if (saved.length === 0) {
+let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+ if (saved.length === 0) {
     savedDiv.innerHTML = "<p>No saved ideas yet</p>";
     return;
   }
-
-  savedDiv.innerHTML = saved.map((item, index) => `
+ savedDiv.innerHTML = saved.map((item, index) => `
     <div class="saved-card">
       <span>✅ ${item}</span>
-
-      <div class="actions">
+ <div class="actions">
         <button class="delete" onclick="deleteIdea(${index})">Delete</button>
         <button class="share" onclick="shareIdea('${item}')">Share</button>
       </div>
     </div>
   `).join("");
 }
-
 // Delete Idea
 function deleteIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-
-  saved.splice(index, 1);
+saved.splice(index, 1);
   localStorage.setItem("ideas", JSON.stringify(saved));
-
   loadSaved();
 }
-
 // Share Idea (WhatsApp)
 function shareIdea(name) {
-  const appLink = "https://your-username.github.io/your-repo-name/";
-
-  const text = `🚀 Business Idea:
-
+const appLink = "https://your-username.github.io/your-repo-name/";
+const text = `🚀 Business Idea:
 ${name}
-
 Try this app 👉 ${appLink}`;
-
-  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-
-  window.open(url, "_blank");
+const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+ window.open(url, "_blank");
 }
 window.deleteIdea = deleteIdea;
 window.saveIdea = saveIdea;
 window.shareIdea = shareIdea;
 window.startBusiness = startBusiness;
-}
 // Load on start
 window.onload = loadSaved;
