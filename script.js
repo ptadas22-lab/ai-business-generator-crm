@@ -45,9 +45,8 @@ function createCard(name, location, profit) {
       <button onclick="saveIdea('${name}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
     </div>
-  </div>
-  `;
-}
+  </div> `;
+  }
 // Start Business Plan
 function startBusiness(name) {
   const output = document.getElementById("output");
