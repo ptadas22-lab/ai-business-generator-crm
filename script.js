@@ -3,16 +3,12 @@ console.log("JS LOADED");
 // Generate Ideas
 function generateIdeas() {
   console.log("Button clicked!");
-}
  const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
-
-  const output = document.getElementById("output");
-
-  output.innerHTML = "⚡ Generating with AI...";
-
-  fetch("http://localhost:3000/generate", {
+const output = document.getElementById("output");
+ output.innerHTML = "⚡ Generating with AI...";
+fetch("http://localhost:3000/generate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
