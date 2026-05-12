@@ -20,6 +20,10 @@ fetch("http://localhost:3000/generate", {
       <div class="card">
         <h3>🤖 AI Generated Ideas</h3>
         <pre style="white-space: pre-wrap;">${data.result}</pre>
+        <div class="actions" style="margin-top:15px;">
+      <button class="start" onclick="startBusiness('AI Idea')">Start</button>
+      <button class="save" onclick="saveIdea('AI Idea')">Save</button>
+      <button class="share" onclick="shareIdea('AI Idea')">Share</button>
       </div>
     `;
   })
