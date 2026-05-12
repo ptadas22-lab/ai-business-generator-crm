@@ -7,7 +7,7 @@ function generateIdeas() {
   const type = document.getElementById("type").value;
 const output = document.getElementById("output");
  output.innerHTML = "⚡ Generating with AI...";
-fetch("http://localhost:3000/generate", {
+fetch("https://https://ai-backend-crm-nzez.onrender.com/generate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
