@@ -16,15 +16,23 @@ fetch("http://localhost:3000/generate", {
   })
   .then(res => res.json())
   .then(data => {
-    output.innerHTML = `
-      <div class="card">
-        <h3>🤖 AI Generated Ideas</h3>
-        <pre style="white-space: pre-wrap;">${data.result}</pre>
-        <div class="actions" style="margin-top:15px;">
-    <div class="actions" style="margin-top:15px;">
-  <button onclick="startBusiness('AI Idea')">Start</button>
-  <button onclick="saveIdea({data.result}')">Save</button>
-  <button onclick="shareIdea({data.result}')">Share</button>
+
+  const text = data.result;
+
+  // Split into ideas safely
+  const ideas = text.split(/\n\n|Idea/i).filter(i => i.trim() !== "");
+
+  // Show 3 cards max
+  output.innerHTML = ideas.slice(0, 3).map((idea, index) => {
+
+    const name = idea.split("\n")[0] || `Idea ${index + 1}`;
+
+    const profitMatch = idea.match(/profit.*$/i);
+    const profit = profitMatch ? profitMatch[0] : "Profit: ₹10K–₹30K/month";
+
+    return createCard(name, location, profit);
+
+  }).join("");
 </div>
 </div>
     `;
