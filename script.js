@@ -52,7 +52,7 @@ function createCard(name, location, profit) {
 // Start Business Plan
 function startBusiness(name) {
   const output = document.getElementById("output");
-
+}
   output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
