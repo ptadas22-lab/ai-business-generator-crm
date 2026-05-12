@@ -117,7 +117,6 @@ window.deleteIdea = deleteIdea;
 window.saveIdea = saveIdea;
 window.shareIdea = shareIdea;
 window.startBusiness = startBusiness;
-}
 function copyIdea(name) {
   navigator.clipboard.writeText(name);
   alert("Copied: " + name);
