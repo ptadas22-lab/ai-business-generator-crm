@@ -50,6 +50,7 @@ function createCard(name, location, profit) {
       <button onclick="startBusiness('${name}')">Start</button>
       <button onclick="saveIdea('${name}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
+      <button class="copy" onclick="copyIdea('${name}')">Copy</button>
     </div>
   </div> `;
   }
@@ -116,5 +117,10 @@ window.deleteIdea = deleteIdea;
 window.saveIdea = saveIdea;
 window.shareIdea = shareIdea;
 window.startBusiness = startBusiness;
+}
+function copyIdea(name) {
+  navigator.clipboard.writeText(name);
+  alert("Copied: " + name);
+}
 // Load on start
 window.onload = loadSaved;
