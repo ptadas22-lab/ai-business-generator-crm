@@ -5,7 +5,7 @@ function generateIdeas() {
  const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
-const output = document.getElementById("output");
+const output = document.getElementById("results");
   const count = document.getElementById("count").value;
  output.innerHTML = "⚡ Generating with AI...";
 fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
@@ -24,7 +24,7 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
   const ideas = text.split(/\n\n|Idea/i).filter(i => i.trim() !== "");
 
   // Show 3 cards max
-  output.innerHTML = ideas.slice(0, 3).map((idea, index) => {
+  output.innerHTML = ideas.slice(0, count).map((idea, index) => {
 
     const name = idea.split("\n")[0] || `Idea ${index + 1}`;
 
@@ -56,15 +56,7 @@ function createCard(name, location, profit) {
   }
 // Start Business Plan
 function startBusiness(name) {
-  const container = document.getElementById("results");
-container.innerHTML = "";
-
-data.ideas.forEach((idea) => {
-  const div = document.createElement("div");
-  div.className = "idea-card";
-  div.innerText = idea;
-  container.appendChild(div);
-});
+  
 output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
