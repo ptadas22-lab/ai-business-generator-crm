@@ -121,6 +121,35 @@ button:hover {
   align-items: center;
   gap: 10px;
 }
+    /* Dropdown styling */
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+/* Results section */
+#results {
+  margin-top: 20px;
+}
+
+/* Idea cards */
+.idea-card {
+  background: #111827;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  transition: 0.2s;
+}
+
+.idea-card:hover {
+  transform: scale(1.02);
+  border-color: #6366f1;
+}
   </style>
 </head>
 
@@ -133,10 +162,18 @@ button:hover {
 <input id="budget" placeholder="Enter Budget ₹">
 <input id="location" placeholder="Enter Location">
 <input id="type" placeholder="Business Type">
+  <label>Number of Ideas</label>
+<select id="count">
+  <option value="3">3</option>
+  <option value="5">5</option>
+  <option value="10">10</option>
+</select>
 
-<button class="Button" onclick="generateIdeas()">Generate Ideas</button>
+<button class="primary" onclick="generateIdeas()">Generate Ideas</button>
 
-<div id="output"></div>
+  <button onclick="copyAll()">Copy All</button>
+
+  <div id="results"></div>
 
 <h3>Saved Ideas</h3>
 <div id="saved"></div>
