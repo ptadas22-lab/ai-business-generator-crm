@@ -6,13 +6,14 @@ function generateIdeas() {
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
 const output = document.getElementById("output");
+  const count = document.getElementById("count").value;
  output.innerHTML = "⚡ Generating with AI...";
 fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ budget, location, type })
+    body: JSON.stringify({ budget, location, type, count })
   })
   .then(res => res.json())
   .then(data => {
@@ -55,7 +56,15 @@ function createCard(name, location, profit) {
   }
 // Start Business Plan
 function startBusiness(name) {
-  const output = document.getElementById("output");
+  const container = document.getElementById("results");
+container.innerHTML = "";
+
+data.ideas.forEach((idea) => {
+  const div = document.createElement("div");
+  div.className = "idea-card";
+  div.innerText = idea;
+  container.appendChild(div);
+});
 output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
@@ -122,3 +131,4 @@ function copyIdea(name) {
 }
 // Load on start
 window.onload = loadSaved;
+window.generateIdeas = generateIdeas;
