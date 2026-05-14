@@ -56,7 +56,7 @@ function createCard(name, location, profit) {
   }
 // Start Business Plan
 function startBusiness(name, location, profit) {
-  const output = document.getElementById("output");
+  const output = document.getElementById("results");
 
   output.innerHTML = `
     <div class="plan">
