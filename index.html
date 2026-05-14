@@ -26,12 +26,10 @@ h2 {
 }
 
 /* Inputs */
-input {
-  margin-bottom: 12px;
-}
+input, select {
   width: 100%;
   padding: 12px;
-  margin-top: 20px;
+  margin-top: 12px;
   border-radius: 10px;
   border: none;
   background: #1e293b;
@@ -39,7 +37,7 @@ input {
   transition: 0.2s ease;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: 2px solid #22c55e;
   background: #0f172a;
 }
@@ -47,7 +45,7 @@ input:focus {
 /* Buttons */
 button {
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   font-weight: bold;
@@ -56,58 +54,68 @@ button {
 
 button:hover {
   opacity: 0.9;
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* Primary button */
-.primary {
+.primary, .Button {
   width: 100%;
   margin-top: 15px;
   background: #22c55e;
   color: black;
+  padding: 12px;
+  border-radius: 12px;
 }
 
 /* Card */
 .card {
-  background: #1e293b;
-  padding: 15px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  padding: 18px;
   margin-top: 15px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: 0.2s ease;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+}
+
+/* Highlight profit */
+.card b {
+  color: #22c55e;
+  font-size: 16px;
 }
 
 /* Actions */
 .actions {
   display: flex;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .actions button {
   flex: 1;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-/* Action colors */
+/* Button colors */
 .start { background: #3b82f6; color: white; }
 .save { background: #facc15; color: black; }
 .share { background: #22c55e; color: black; }
 .delete { background: red; color: white; }
-.copy {background: #9333ea;color: white;}
-    }   
+.copy { background: #9333ea; color: white; }
+
 /* Plan section */
 .plan {
   background: #020617;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 18px;
+  margin-top: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  border-left: 4px solid #22c55e;
 }
 
 /* Saved card */
@@ -121,22 +129,13 @@ button:hover {
   align-items: center;
   gap: 10px;
 }
-    /* Dropdown styling */
-select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  background: #1e293b;
-  color: white;
-  border: none;
-  margin-top: 10px;
-}
+
 /* Results section */
 #results {
   margin-top: 20px;
 }
 
-/* Idea cards */
+/* Idea cards (optional if still used) */
 .idea-card {
   background: #111827;
   padding: 15px;
@@ -169,7 +168,7 @@ select {
   <option value="10">10</option>
 </select>
 
-<button class="primary" onclick="generateIdeas()">Generate Ideas</button>
+<button class="Button" onclick="generateIdeas()">✨ Generate Smart Ideas</button>
 
   <button onclick="copyAll()">Copy All</button>
 
