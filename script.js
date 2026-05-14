@@ -60,8 +60,13 @@ function createCard(name, location, profit) {
   }
 // Start Business Plan
 function startBusiness(name) {
- const output = document.getElementById("results"); 
-output.innerHTML += `
+ const output = document.getElementById("results");
+  if (!output) {
+    console.log("output div missing");
+    return;
+  }
+
+  output.innerHTML += `
     <div class="plan">
       <h3>📈 ${name} Plan</h3>
       <p>Step 1: Research market</p>
@@ -128,3 +133,4 @@ function copyIdea(name) {
 // Load on start
 window.onload = loadSaved;
 window.generateIdeas = generateIdeas;
+window.startBusiness = startBusiness;
