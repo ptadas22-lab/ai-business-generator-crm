@@ -68,12 +68,16 @@ function startBusiness(name) {
 
   output.innerHTML += `
     <div class="plan">
-      <h3>📈 ${name} Plan</h3>
-      <p>Step 1: Research market</p>
-      <p>Step 2: Buy materials</p>
-      <p>Step 3: Start small</p>
-      <p>Step 4: Promote via WhatsApp</p>
-      <p>Step 5: Grow gradually</p>
+      <h3>📈 ${name} Business Plan</h3>
+
+      <p><b>Step 1:</b> Find demand areas in your location</p>
+      <p><b>Step 2:</b> Start with small investment</p>
+      <p><b>Step 3:</b> Source materials locally</p>
+      <p><b>Step 4:</b> Promote using WhatsApp & Instagram</p>
+      <p><b>Step 5:</b> Offer discounts to first customers</p>
+      <p><b>Step 6:</b> Scale gradually based on demand</p>
+
+      <p style="margin-top:10px;"><b>Tip:</b> Focus on quality + consistency</p>
     </div>
   `;
 }
