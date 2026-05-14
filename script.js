@@ -59,25 +59,24 @@ function createCard(name, location, profit) {
   </div> `;
   }
 // Start Business Plan
-function startBusiness(name) {
- const output = document.getElementById("results");
-  if (!output) {
-    console.log("output div missing");
-    return;
-  }
+function startBusiness(name, location, profit) {
+  const output = document.getElementById("output");
 
-  output.innerHTML += `
+  output.innerHTML = `
     <div class="plan">
-      <h3>📈 ${name} Business Plan</h3>
+      <h3>📈 ${name} Plan</h3>
 
-      <p><b>Step 1:</b> Find demand areas in your location</p>
-      <p><b>Step 2:</b> Start with small investment</p>
-      <p><b>Step 3:</b> Source materials locally</p>
-      <p><b>Step 4:</b> Promote using WhatsApp & Instagram</p>
-      <p><b>Step 5:</b> Offer discounts to first customers</p>
-      <p><b>Step 6:</b> Scale gradually based on demand</p>
+      <p><b>📍 Location:</b> ${location}</p>
+      <p><b>💰 Expected Profit:</b> ${profit}</p>
 
-      <p style="margin-top:10px;"><b>Tip:</b> Focus on quality + consistency</p>
+      <p><b>Step 1:</b> Analyze demand for "${name}" in ${location}</p>
+      <p><b>Step 2:</b> Start with low budget setup</p>
+      <p><b>Step 3:</b> Buy raw materials or stock</p>
+      <p><b>Step 4:</b> Promote via WhatsApp & Instagram</p>
+      <p><b>Step 5:</b> Get first 10 customers</p>
+      <p><b>Step 6:</b> Improve based on feedback</p>
+
+      <p style="margin-top:10px;"><b>Tip:</b> Focus on quality & repeat customers</p>
     </div>
   `;
 }
