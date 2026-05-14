@@ -26,7 +26,11 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
   // Show 3 cards max
   output.innerHTML = ideas.map((idea, index) => {
 
-    const name = idea.split("\n")[0] || `Idea ${index + 1}`;
+    const lines = idea.trim().split("\n");
+const name = lines[0] || `Idea ${index + 1}`;
+    const ideas = text
+  .split(/\n\n/)
+  .filter(i => i.trim().length > 10);
 
     const profitMatch = idea.match(/profit.*$/i);
     const profit = profitMatch  ? profitMatch[0].replace(/Profit:\s*/i, "") : "₹10K–₹30K/month";
