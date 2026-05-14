@@ -24,7 +24,7 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
   const ideas = text.split(/\n\n|Idea/i).filter(i => i.trim() !== "");
 
   // Show 3 cards max
-  output.innerHTML = ideas.slice(0, count).map((idea, index) => {
+  output.innerHTML = ideas.map((idea, index) => {
 
     const name = idea.split("\n")[0] || `Idea ${index + 1}`;
 
