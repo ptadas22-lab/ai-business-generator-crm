@@ -28,10 +28,6 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
 
     const lines = idea.trim().split("\n");
 const name = lines[0] || `Idea ${index + 1}`;
-    const ideas = text
-  .split(/\n\n/)
-  .filter(i => i.trim().length > 10);
-
     const profitMatch = idea.match(/profit.*$/i);
     const profit = profitMatch  ? profitMatch[0].replace(/Profit:\s*/i, "") : "₹10K–₹30K/month";
 
@@ -51,7 +47,7 @@ function createCard(name, location, profit) {
     <p>High demand in ${location}</p>
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
-      <button onclick="startBusiness('${name}')">Start</button>
+      <button onclick="startBusiness('${name}', '${location}', '${profit}')">Start</button>
       <button onclick="saveIdea('${name}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
       <button class="copy" onclick="copyIdea('${name}')">Copy</button>
