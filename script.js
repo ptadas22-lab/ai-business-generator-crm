@@ -38,7 +38,7 @@ const name = lines[0] || `Idea ${index + 1}`;
 
     <div class="actions">
       <button onclick="startBusiness('${name}', '${location}', '${profit}')">Start</button>
-      <button onclick="saveIdea('${name}')">Save</button>
+      <button onclick="saveIdea('${name}', '${location}', '${profit}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
       <button class="copy" onclick="copyIdea('${name}')">Copy</button>
     </div>
@@ -88,14 +88,24 @@ function startBusiness(name, location, profit) {
   `;
 }
 // Save Idea
-function saveIdea(name) {
+function saveIdea(name, location, profit) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  if (!saved.includes(name)) {
-    saved.push(name);
+  const newIdea = {
+    name: name,
+    location: location,
+    profit: profit
+  };
+
+  // avoid duplicate
+  const exists = saved.some(item => item.name === name);
+
+  if (!exists) {
+    saved.push(newIdea);
     localStorage.setItem("ideas", JSON.stringify(saved));
   }
- loadSaved();
+
+  loadSaved();
 }
 // Load Saved Ideas
 function loadSaved() {
