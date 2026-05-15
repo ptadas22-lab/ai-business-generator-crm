@@ -28,12 +28,23 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
 
     const lines = idea.trim().split("\n");
 const name = lines[0] || `Idea ${index + 1}`;
+    const details = lines.slice(1).join("<br>");
     const profitMatch = idea.match(/profit.*$/i);
     const profit = profitMatch  ? profitMatch[0].replace(/Profit:\s*/i, "") : "₹10K–₹30K/month";
+    return `
+  <div class="card">
+    <h3>${name}</h3>
+    <p>${details}</p>
 
-    return createCard(name, location, profit);
-
-  }).join("");
+    <div class="actions">
+      <button onclick="startBusiness('${name}')">Start</button>
+      <button onclick="saveIdea('${name}')">Save</button>
+      <button onclick="shareIdea('${name}')">Share</button>
+      <button class="copy" onclick="copyIdea('${name}')">Copy</button>
+    </div>
+  </div>
+`;
+}).join("");
 })
   .catch(err => {
     output.innerHTML = "❌ Error: " + err.message;
