@@ -37,7 +37,7 @@ const name = lines[0] || `Idea ${index + 1}`;
     <p>${details}</p>
 
     <div class="actions">
-      <button onclick="startBusiness('${name}')">Start</button>
+      <button onclick="startBusiness('${name}', '${location}', '${profit}')">Start</button>
       <button onclick="saveIdea('${name}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
       <button class="copy" onclick="copyIdea('${name}')">Copy</button>
