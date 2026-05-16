@@ -173,7 +173,12 @@ button:hover {
   <button onclick="copyAll()">Copy All</button>
 
   <div id="results"></div>
-
+<input 
+  type="text" 
+  id="searchInput" 
+  placeholder="🔍 Search saved ideas..." 
+  oninput="searchIdeas()"
+/>
 <h3>Saved Ideas</h3>
 <div id="saved"></div>
 
