@@ -215,10 +215,8 @@ function editIdea(index) {
   document.getElementById("editStatus").innerText = "✏️ Editing mode active";
 }
 function cancelEdit() {
-  console.log("CANCEL EDIT CLICKED:", index);
   localStorage.removeItem("editIndex");
-
-  document.getElementById("type").value = "";
+document.getElementById("type").value = "";
   document.getElementById("location").value = "";
   document.getElementById("budget").value = "";
 
