@@ -197,6 +197,7 @@ function clearAll() {
     loadSaved();
   }
   function editIdea(index) {
+     console.log("EDIT CLICKED:", index);
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
   let idea = saved[index];
