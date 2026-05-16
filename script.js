@@ -104,13 +104,24 @@ function saveIdea(name, location, profit) {
     profit: profit
   };
 
-  // avoid duplicate
-  const exists = saved.some(item => item.name === name);
+  let editIndex = localStorage.getItem("editIndex");
 
-  if (!exists) {
-    saved.push(newIdea);
-    localStorage.setItem("ideas", JSON.stringify(saved));
+  if (editIndex !== null) {
+    // EDIT MODE → update existing
+    saved[editIndex] = newIdea;
+    localStorage.removeItem("editIndex");
+  } else {
+    // ADD MODE → avoid duplicate
+    const exists = saved.some(item => item.name === name);
+
+    if (!exists) {
+      saved.push(newIdea);
+    }
   }
+
+  localStorage.setItem("ideas", JSON.stringify(saved));
+  loadSaved();
+}
 
   loadSaved();
 }
@@ -119,7 +130,6 @@ function loadSaved() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
   renderSaved(saved);
 }
-
 // Delete Idea
 function deleteIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
@@ -176,6 +186,7 @@ function renderSaved(data) {
       <p>💰 ${item.profit}</p>
 
       <div class="actions">
+      <button onclick="editIdea(${index})">Edit</button>
         <button onclick="deleteIdea(${index})">Delete</button>
       </div>
     </div>
@@ -186,6 +197,12 @@ function clearAll() {
     localStorage.removeItem("ideas");
     loadSaved();
   }
+function editIdea(index) {
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+
+  document.getElementById("ideaInput").value = saved[index];
+
+  localStorage.setItem("editIndex", index);
 }
 // Load on start
 window.onload = loadSaved;
