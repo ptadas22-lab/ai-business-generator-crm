@@ -1,6 +1,9 @@
 console.log("JS LOADED");
 // Generate Ideas
 function generateIdeas() {
+  const btn = document.getElementById("generateBtn");
+btn.disabled = true;
+btn.innerText = "⏳ Generating...";
   console.log("Button clicked!");
  const budget = document.getElementById("budget").value;
   const location = document.getElementById("location").value;
@@ -17,7 +20,8 @@ fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
   })
   .then(res => res.json())
   .then(data => {
-
+btn.disabled = false;
+btn.innerText = "✨ Generate Smart Ideas";
   const text = data.result;
 
   // Split into ideas safely
@@ -47,6 +51,8 @@ const name = lines[0] || `Idea ${index + 1}`;
 }).join("");
 })
   .catch(err => {
+    btn.disabled = false;
+btn.innerText = "✨ Generate Smart Ideas";
     output.innerHTML = "❌ Error: " + err.message;
   });
 }
