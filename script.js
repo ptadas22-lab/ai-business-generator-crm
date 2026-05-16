@@ -117,8 +117,7 @@ function loadSaved() {
 
   if (saved.length === 0) {
     savedDiv.innerHTML = "<p>No saved ideas yet</p>";
-    return;
-  }
+    }
 
   savedDiv.innerHTML = saved.map((item, index) => `
     <div class="saved-card">
