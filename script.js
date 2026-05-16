@@ -95,33 +95,33 @@ function startBusiness(name, location, profit) {
   `;
 }
 // Save Idea
-function saveIdea(name, location, profit) {
+function saveIdea() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  const newIdea = {
-    name: name,
-    location: location,
-    profit: profit
+  let newIdea = {
+    name: document.getElementById("type").value,
+    location: document.getElementById("location").value,
+    profit: document.getElementById("budget").value
   };
 
   let editIndex = localStorage.getItem("editIndex");
 
   if (editIndex !== null) {
-    // EDIT MODE → update existing
     saved[editIndex] = newIdea;
     localStorage.removeItem("editIndex");
   } else {
-    // ADD MODE → avoid duplicate
-    const exists = saved.some(item => item.name === name);
-
-    if (!exists) {
-      saved.push(newIdea);
-    }
+    saved.push(newIdea);
   }
 
   localStorage.setItem("ideas", JSON.stringify(saved));
   loadSaved();
+
+  // clear inputs
+  document.getElementById("type").value = "";
+  document.getElementById("location").value = "";
+  document.getElementById("budget").value = "";
 }
+  
 
   loadSaved();
 // Load Saved Ideas
@@ -196,15 +196,14 @@ function clearAll() {
     localStorage.removeItem("ideas");
     loadSaved();
   }
-function editIdea(index) {
+  function editIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  console.log("Editing index:", index);
-  console.log("Idea:", saved[index]);
+  let idea = saved[index];
 
-  document.getElementById("nameInput").value = saved[index].name;
-  document.getElementById("locationInput").value = saved[index].location;
-  document.getElementById("profitInput").value = saved[index].profit;
+  document.getElementById("type").value = idea.name;
+  document.getElementById("location").value = idea.location;
+  document.getElementById("budget").value = idea.profit;
 
   localStorage.setItem("editIndex", index);
 }
