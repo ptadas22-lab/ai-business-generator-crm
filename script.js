@@ -109,8 +109,9 @@ function saveIdea(name, location, profit) {
 }
 // Load Saved Ideas
 function loadSaved() {
-  const savedDiv = document.getElementById("saved");
-  if (!savedDiv) return;
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+  renderSaved(saved);
+}
 
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
@@ -162,6 +163,37 @@ window.startBusiness = startBusiness;
 function copyIdea(name) {
   navigator.clipboard.writeText(name);
   alert("Copied: " + name);
+}
+function searchIdeas() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+
+  const filtered = saved.filter(item =>
+    item.name.toLowerCase().includes(query)
+  );
+
+  renderSaved(filtered);
+}
+function renderSaved(data) {
+  const savedDiv = document.getElementById("saved");
+
+  if (data.length === 0) {
+    savedDiv.innerHTML = "<p>No matching ideas</p>";
+    return;
+  }
+
+  savedDiv.innerHTML = data.map((item, index) => `
+    <div class="saved-card">
+      <h4>✅ ${item.name}</h4>
+      <p>📍 ${item.location}</p>
+      <p>💰 ${item.profit}</p>
+
+      <div class="actions">
+        <button onclick="deleteIdea(${index})">Delete</button>
+      </div>
+    </div>
+  `).join("");
 }
 // Load on start
 window.onload = loadSaved;
