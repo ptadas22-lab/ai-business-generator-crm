@@ -113,26 +113,6 @@ function loadSaved() {
   renderSaved(saved);
 }
 
-  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-
-  if (saved.length === 0) {
-    savedDiv.innerHTML = "<p>No saved ideas yet</p>";
-    }
-
-  savedDiv.innerHTML = saved.map((item, index) => `
-    <div class="saved-card">
-      <h4>✅ ${item.name}</h4>
-
-      <p>📍 ${item.location}</p>
-      <p>💰 ${item.profit}</p>
-
-      <div class="actions">
-        <button class="delete" onclick="deleteIdea(${index})">Delete</button>
-        <button class="share" onclick="shareIdea('${item.name}', '${item.location}', '${item.profit}')">Share</button>
-      </div>
-    </div>
-  `).join("");
-}
 // Delete Idea
 function deleteIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
