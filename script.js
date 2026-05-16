@@ -195,6 +195,12 @@ function renderSaved(data) {
     </div>
   `).join("");
 }
+function clearAll() {
+  if (confirm("Delete all saved ideas?")) {
+    localStorage.removeItem("ideas");
+    loadSaved();
+  }
+}
 // Load on start
 window.onload = loadSaved;
 window.generateIdeas = generateIdeas;
