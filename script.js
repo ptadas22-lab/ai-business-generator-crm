@@ -124,7 +124,6 @@ function saveIdea(name, location, profit) {
 }
 
   loadSaved();
-}
 // Load Saved Ideas
 function loadSaved() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
