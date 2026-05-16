@@ -200,7 +200,11 @@ function clearAll() {
 function editIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  document.getElementById("ideaInput").value = saved[index];
+  let idea = saved[index];
+
+  document.getElementById("nameInput").value = idea.name;
+  document.getElementById("locationInput").value = idea.location;
+  document.getElementById("profitInput").value = idea.profit;
 
   localStorage.setItem("editIndex", index);
 }
