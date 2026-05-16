@@ -10,6 +10,7 @@ btn.innerText = "⏳ Generating...";
   const type = document.getElementById("type").value;
 const output = document.getElementById("results");
   const count = document.getElementById("count").value;
+  document.getElementById("emptyMsg")?.remove();
  output.innerHTML = "⚡ Generating with AI...";
 fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
     method: "POST",
