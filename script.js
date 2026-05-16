@@ -199,11 +199,12 @@ function clearAll() {
 function editIdea(index) {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
-  let idea = saved[index];
+  console.log("Editing index:", index);
+  console.log("Idea:", saved[index]);
 
-  document.getElementById("nameInput").value = idea.name;
-  document.getElementById("locationInput").value = idea.location;
-  document.getElementById("profitInput").value = idea.profit;
+  document.getElementById("nameInput").value = saved[index].name;
+  document.getElementById("locationInput").value = saved[index].location;
+  document.getElementById("profitInput").value = saved[index].profit;
 
   localStorage.setItem("editIndex", index);
 }
