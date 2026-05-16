@@ -204,7 +204,6 @@ function clearAll() {
 function editIdea(index) {
      console.log("EDIT CLICKED:", index);
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-
   let idea = saved[index];
 
   document.getElementById("type").value = idea.name;
@@ -212,6 +211,18 @@ function editIdea(index) {
   document.getElementById("budget").value = idea.profit;
 
   localStorage.setItem("editIndex", index);
+
+  document.getElementById("editStatus").innerText = "✏️ Editing mode active";
+}
+function cancelEdit() {
+  console.log("CANCEL EDIT CLICKED:", index);
+  localStorage.removeItem("editIndex");
+
+  document.getElementById("type").value = "";
+  document.getElementById("location").value = "";
+  document.getElementById("budget").value = "";
+
+  document.getElementById("editStatus").innerText = "";
 }
 // Load on start
 window.onload = loadSaved;
