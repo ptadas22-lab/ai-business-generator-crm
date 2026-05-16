@@ -115,14 +115,7 @@ function saveIdea() {
 
   localStorage.setItem("ideas", JSON.stringify(saved));
   loadSaved();
-
-  // clear inputs
-  document.getElementById("type").value = "";
-  document.getElementById("location").value = "";
-  document.getElementById("budget").value = "";
 }
-  
-
   loadSaved();
 // Load Saved Ideas
 function loadSaved() {
@@ -172,24 +165,34 @@ function searchIdeas() {
 }
 function renderSaved(data) {
   const savedDiv = document.getElementById("saved");
+  const allData = JSON.parse(localStorage.getItem("ideas")) || [];
 
   if (data.length === 0) {
     savedDiv.innerHTML = "<p>No matching ideas</p>";
     return;
   }
 
-  savedDiv.innerHTML = data.map((item, index) => `
-    <div class="saved-card">
-      <h4>✅ ${item.name}</h4>
-      <p>📍 ${item.location}</p>
-      <p>💰 ${item.profit}</p>
+  savedDiv.innerHTML = data.map((item) => {
+    const realIndex = allData.findIndex(
+      x =>
+        x.name === item.name &&
+        x.location === item.location &&
+        x.profit === item.profit
+    );
 
-      <div class="actions">
-      <button onclick="editIdea(${index})">Edit</button>
-        <button onclick="deleteIdea(${index})">Delete</button>
+    return `
+      <div class="saved-card">
+        <h4>✅ ${item.name}</h4>
+        <p>📍 ${item.location}</p>
+        <p>💰 ${item.profit}</p>
+
+        <div class="actions">
+          <button onclick="editIdea(${realIndex})">Edit</button>
+          <button onclick="deleteIdea(${realIndex})">Delete</button>
+        </div>
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 }
 function clearAll() {
   if (confirm("Delete all saved ideas?")) {
