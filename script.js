@@ -196,7 +196,9 @@ function clearAll() {
     localStorage.removeItem("ideas");
     loadSaved();
   }
-  function editIdea(index) {
+}
+  
+function editIdea(index) {
      console.log("EDIT CLICKED:", index);
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
 
