@@ -141,7 +141,6 @@ saved.splice(index, 1);
   loadSaved();
 }
 // Share Idea (WhatsApp)
-function shareIdea(name) {
 function shareIdea(name, location, profit) {
   const appLink = "https://your-username.github.io/your-repo-name/";
 
