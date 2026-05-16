@@ -214,4 +214,4 @@ function editIdea(index) {
 window.onload = loadSaved;
 window.generateIdeas = generateIdeas;
 window.startBusiness = startBusiness;
-}
+
