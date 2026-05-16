@@ -59,7 +59,7 @@ function createCard(name, location, profit) {
     <p><b>Profit:</b> ${profit}</p>
 <div class="actions">
       <button onclick="startBusiness('${name}', '${location}', '${profit}')">Start</button>
-      <button onclick="saveIdea('${name}')">Save</button>
+      <button onclick="saveIdea('${name}', '${location}', '${profit}')">Save</button>
       <button onclick="shareIdea('${name}')">Share</button>
       <button class="copy" onclick="copyIdea('${name}')">Copy</button>
     </div>
@@ -111,17 +111,24 @@ function saveIdea(name, location, profit) {
 function loadSaved() {
   const savedDiv = document.getElementById("saved");
   if (!savedDiv) return;
-let saved = JSON.parse(localStorage.getItem("ideas")) || [];
- if (saved.length === 0) {
+
+  let saved = JSON.parse(localStorage.getItem("ideas")) || [];
+
+  if (saved.length === 0) {
     savedDiv.innerHTML = "<p>No saved ideas yet</p>";
     return;
   }
- savedDiv.innerHTML = saved.map((item, index) => `
+
+  savedDiv.innerHTML = saved.map((item, index) => `
     <div class="saved-card">
-      <span>✅ ${item}</span>
- <div class="actions">
+      <h4>✅ ${item.name}</h4>
+
+      <p>📍 ${item.location}</p>
+      <p>💰 ${item.profit}</p>
+
+      <div class="actions">
         <button class="delete" onclick="deleteIdea(${index})">Delete</button>
-        <button class="share" onclick="shareIdea('${item}')">Share</button>
+        <button class="share" onclick="shareIdea('${item.name}', '${item.location}', '${item.profit}')">Share</button>
       </div>
     </div>
   `).join("");
@@ -135,12 +142,19 @@ saved.splice(index, 1);
 }
 // Share Idea (WhatsApp)
 function shareIdea(name) {
-const appLink = "https://your-username.github.io/your-repo-name/";
-const text = `🚀 Business Idea:
+function shareIdea(name, location, profit) {
+  const appLink = "https://your-username.github.io/your-repo-name/";
+
+  const text = `🚀 Business Idea:
 ${name}
+
+📍 Location: ${location}
+💰 Profit: ${profit}
+
 Try this app 👉 ${appLink}`;
-const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
- window.open(url, "_blank");
+
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank");
 }
 window.deleteIdea = deleteIdea;
 window.saveIdea = saveIdea;
