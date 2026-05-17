@@ -76,59 +76,42 @@ function createCard(name, location, profit) {
 function startBusiness(name, location, profit) {
   const output = document.getElementById("results");
 
-  output.innerHTML = `
-    <div class="plan">
-      <h2>📰 ${name} Business Guide</h2>
+  // loading
+  output.innerHTML = "<div class='loading'>🧠 Generating business guide...</div>";
 
-      <p><b>📍 Location:</b> ${location}</p>
-      <p><b>💰 Expected Profit:</b> ${profit}</p>
+  fetch("https://ai-backend-crm-6xh4.onrender.com/plan", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, location, profit })
+  })
+  .then(res => res.json())
+  .then(data => {
 
-      <hr>
+    const text = data.plan;
 
-      <h3>📊 Market Opportunity</h3>
-      <p>
-      This business has strong potential in ${location} due to local demand, 
-      population behavior, and current trends. Customers are actively looking 
-      for affordable and accessible solutions in this category.
-      </p>
+    // simple formatting (convert headings)
+    const formatted = text
+      .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
+      .replace(/\n/g, "<br>");
 
-      <h3>💡 Business Idea Explained</h3>
-      <p>
-      ${name} can be started with a focused approach targeting nearby customers. 
-      By understanding customer needs and pricing correctly, this business can 
-      generate steady income within a few months.
-      </p>
+    output.innerHTML = `
+      <div class="plan">
+        <h2>📰 ${name} Business Guide</h2>
 
-      <h3>🛠️ How to Start</h3>
-      <ul>
-        <li>Research demand in ${location}</li>
-        <li>Start with minimum setup and test market</li>
-        <li>Source materials/products at low cost</li>
-        <li>Launch with 5–10 customers initially</li>
-      </ul>
+        <p><b>📍 Location:</b> ${location}</p>
+        <p><b>💰 Expected Profit:</b> ${profit}</p>
 
-      <h3>📣 Marketing Strategy</h3>
-      <ul>
-        <li>Promote using WhatsApp groups</li>
-        <li>Use Instagram reels for visibility</li>
-        <li>Offer discounts for first customers</li>
-      </ul>
+        <hr>
 
-      <h3>📈 Growth Plan</h3>
-      <p>
-      Once stable, expand by increasing reach, improving quality, 
-      and building repeat customers. Scaling can be done through 
-      online platforms and referrals.
-      </p>
-
-      <h3>⚠️ Risks</h3>
-      <p>
-      Initial slow growth and competition are common. Focus on quality 
-      and customer satisfaction to overcome this.
-      </p>
-
-    </div>
-  `;
+        <div>${formatted}</div>
+      </div>
+    `;
+  })
+  .catch(err => {
+    output.innerHTML = "❌ Error: " + err.message;
+  });
 }
 
 // Save Idea
