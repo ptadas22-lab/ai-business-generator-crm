@@ -222,6 +222,12 @@ document.getElementById("type").value = "";
 
   document.getElementById("editStatus").innerText = "";
 }
+function showTab(tab) {
+  document.getElementById("resultsSection").style.display = "none";
+  document.getElementById("savedSection").style.display = "none";
+
+  document.getElementById(tab + "Section").style.display = "block";
+}
 // Load on start
 window.onload = loadSaved;
 window.generateIdeas = generateIdeas;
