@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* ===== GLOBAL ===== */
 body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #0f172a, #020617);
@@ -12,170 +13,109 @@ body {
   margin: 0;
 }
 
-/* Layout */
+/* ===== CONTAINER ===== */
 .container {
   max-width: 500px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 20px;
 }
 
-/* Heading */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Inputs */
-input, select {
+/* ===== INPUTS ===== */
+input {
   width: 100%;
   padding: 12px;
-  margin-top: 12px;
+  margin-top: 10px;
   border-radius: 10px;
   border: none;
+  outline: none;
   background: #1e293b;
   color: white;
-  transition: 0.2s ease;
-  <p id="editStatus" style="color: lightgreen;"></p>
 }
 
-input:focus, select:focus {
-  outline: 2px solid #22c55e;
-  background: #0f172a;
-}
-
-/* Buttons */
+/* ===== BUTTON ===== */
 button {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 10px 15px;
+  margin-top: 10px;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
+  background: #38bdf8;
+  color: black;
   font-weight: bold;
-  transition: 0.2s ease;
 }
 
 button:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+  background: #0ea5e9;
 }
 
-/* Primary button */
-.primary, .Button {
-  width: 100%;
+/* ===== CARDS ===== */
+.card, .saved-card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 15px;
   margin-top: 15px;
-  background: #22c55e;
-  color: black;
-  padding: 12px;
-  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* Card */
-.card {
-  background: linear-gradient(145deg, #1e293b, #0f172a);
-  padding: 18px;
-  margin-top: 15px;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: 0.3s ease;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* Highlight profit */
-.card b {
-  color: #22c55e;
-  font-size: 16px;
-}
-
-/* Actions */
+/* ===== ACTION BUTTONS ===== */
 .actions {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
-.actions button {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
+/* ===== EDIT MODE ===== */
+#editStatus {
+  margin-top: 10px;
+  color: #4ade80;
 }
 
-/* Button colors */
-.start { background: #3b82f6; color: white; }
-.save { background: #facc15; color: black; }
-.share { background: #22c55e; color: black; }
-.delete { background: red; color: white; }
-.copy { background: #9333ea; color: white; }
-
-/* Plan section */
+/* ===== PLAN ===== */
 .plan {
   background: #020617;
-  padding: 18px;
-  margin-top: 25px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  border-left: 4px solid #22c55e;
-}
-
-/* Saved card */
-.saved-card {
-  background: #1e293b;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Results section */
-#results {
-  margin-top: 20px;
-}
-
-/* Idea cards (optional if still used) */
-.idea-card {
-  background: #111827;
   padding: 15px;
+  border-radius: 10px;
   margin-top: 10px;
-  border-radius: 12px;
-  border: 1px solid #1f2937;
-  transition: 0.2s;
+}
+    .loading {
+  text-align: center;
+  margin-top: 20px;
+  animation: blink 1s infinite;
 }
 
-.idea-card:hover {
-  transform: scale(1.02);
-  border-color: #6366f1;
+@keyframes blink {
+  50% { opacity: 0.5; }
 }
-  </style>
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-<h2>🚀 AI Business Generator</h2>
+<div class="container">
 
-<input id="budget" placeholder="Enter Budget ₹">
-<input id="location" placeholder="Enter Location">
-<input id="type" placeholder="Business Type">
-  <label>Number of Ideas</label>
-<select id="count">
-  <option value="3">3</option>
-  <option value="5">5</option>
-  <option value="10">10</option>
-</select>
+  <h2>🚀 AI Business Generator</h2>
 
-<button id="generateBtn" class="Button" onclick="generateIdeas()">✨ Generate Smart Ideas</button>
+  <input id="budget" placeholder="Enter Budget ₹">
+  <input id="location" placeholder="Enter Location">
+  <input id="type" placeholder="Business Type">
 
-  <button onclick="copyAll()">Copy All</button>
-<h3>🚀 Generated Ideas</h3>
+  <button id="generateBtn" onclick="generateIdeas()">✨ Generate Smart Ideas</button>
+  <button onclick="saveIdea()">💾 Save Idea</button>
+  <button onclick="cancelEdit()">❌ Cancel Edit</button>
+
+  <p id="editStatus"></p>
+
+  <input id="searchInput" placeholder="Search ideas..." onkeyup="searchIdeas()">
+
   <div id="results"></div>
-   <p id="emptyMsg">No ideas generated yet</p>
-  </div>
+
+  <h3>📌 Saved Ideas</h3>
+  <div id="saved"></div>
+
+</div>
+  
 <input 
   type="text" 
   id="searchInput" 
