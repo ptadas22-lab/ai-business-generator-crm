@@ -111,11 +111,25 @@ button:hover {
 
   <input id="searchInput" placeholder="Search ideas..." onkeyup="searchIdeas()">
 
-  <div id="results"></div>
+  <!-- TABS -->
+  <div class="tabs">
+    <button onclick="showTab('results')">⚡ Generated</button>
+    <button onclick="showTab('saved')">📌 Saved</button>
+  </div>
 
-  <h3>📌 Saved Ideas</h3>
-  <div id="saved"></div>
+  <!-- GENERATED SECTION -->
+  <div id="resultsSection">
+    <div id="results"></div>
+  </div>
 
+  <!-- SAVED SECTION -->
+  <div id="savedSection" style="display:none;">
+    <h3>📌 Saved Ideas</h3>
+    <button onclick="clearAll()">🗑 Clear All</button>
+    <div id="saved"></div>
+  </div>
+
+</div>
 </div>
   
 <input 
