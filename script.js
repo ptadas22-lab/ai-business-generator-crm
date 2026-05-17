@@ -89,12 +89,14 @@ function startBusiness(name, location, profit) {
   .then(res => res.json())
   .then(data => {
 
-    const text = data.plan;
+   const text = data.plan || "";
 
     // simple formatting (convert headings)
-    const formatted = text
-      .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
-      .replace(/\n/g, "<br>");
+    const safeText = data.plan || "No data received";
+
+const formatted = safeText
+  .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
+  .replace(/\n/g, "<br>");
 
     output.innerHTML = `
       <div class="plan">
