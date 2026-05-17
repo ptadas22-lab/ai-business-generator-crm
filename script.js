@@ -88,14 +88,14 @@ function startBusiness(name, location, profit) {
   })
   .then(res => res.json())
   .then(data => {
-
+.then(data => {
+  console.log("PLAN RESPONSE:", data);  // 👈 ADD HERE
   const raw = data.plan;
 
-if (!raw || raw.includes("AI not configured")) {
-  output.innerHTML = "⚠️ AI not working. Check backend API key.";
+if (!raw || raw.length < 20) {
+  output.innerHTML = "⚠️ No data received from AI";
   return;
 }
-
 const formatted = raw
   .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
   .replace(/\n/g, "<br>");
