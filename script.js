@@ -26,7 +26,7 @@ btn.innerText = "✨ Generate Smart Ideas";
   const text = data.result;
 
   // Split into ideas safely
-  const ideas = text.split(/\n\n|Idea/i).filter(i => i.trim() !== "");
+  const ideas = text.split("\n\n").filter(i => i.includes("Location"));
 
   // Show 3 cards max
   output.innerHTML = ideas.map((idea, index) => {
@@ -78,22 +78,59 @@ function startBusiness(name, location, profit) {
 
   output.innerHTML = `
     <div class="plan">
-      <h3>📈 ${name} Plan</h3>
+      <h2>📰 ${name} Business Guide</h2>
 
       <p><b>📍 Location:</b> ${location}</p>
       <p><b>💰 Expected Profit:</b> ${profit}</p>
 
-      <p><b>Step 1:</b> Analyze demand for "${name}" in ${location}</p>
-      <p><b>Step 2:</b> Start with low budget setup</p>
-      <p><b>Step 3:</b> Buy raw materials or stock</p>
-      <p><b>Step 4:</b> Promote via WhatsApp & Instagram</p>
-      <p><b>Step 5:</b> Get first 10 customers</p>
-      <p><b>Step 6:</b> Improve based on feedback</p>
+      <hr>
 
-      <p style="margin-top:10px;"><b>Tip:</b> Focus on quality & repeat customers</p>
+      <h3>📊 Market Opportunity</h3>
+      <p>
+      This business has strong potential in ${location} due to local demand, 
+      population behavior, and current trends. Customers are actively looking 
+      for affordable and accessible solutions in this category.
+      </p>
+
+      <h3>💡 Business Idea Explained</h3>
+      <p>
+      ${name} can be started with a focused approach targeting nearby customers. 
+      By understanding customer needs and pricing correctly, this business can 
+      generate steady income within a few months.
+      </p>
+
+      <h3>🛠️ How to Start</h3>
+      <ul>
+        <li>Research demand in ${location}</li>
+        <li>Start with minimum setup and test market</li>
+        <li>Source materials/products at low cost</li>
+        <li>Launch with 5–10 customers initially</li>
+      </ul>
+
+      <h3>📣 Marketing Strategy</h3>
+      <ul>
+        <li>Promote using WhatsApp groups</li>
+        <li>Use Instagram reels for visibility</li>
+        <li>Offer discounts for first customers</li>
+      </ul>
+
+      <h3>📈 Growth Plan</h3>
+      <p>
+      Once stable, expand by increasing reach, improving quality, 
+      and building repeat customers. Scaling can be done through 
+      online platforms and referrals.
+      </p>
+
+      <h3>⚠️ Risks</h3>
+      <p>
+      Initial slow growth and competition are common. Focus on quality 
+      and customer satisfaction to overcome this.
+      </p>
+
     </div>
   `;
 }
+
 // Save Idea
 function saveIdea() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
