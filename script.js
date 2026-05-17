@@ -9,7 +9,7 @@ btn.innerText = "⏳ Generating...";
   const location = document.getElementById("location").value;
   const type = document.getElementById("type").value;
 const output = document.getElementById("results");
-  const count = document.getElementById("count").value;
+  const count = document.getElementById("count ? .value || 10;
   document.getElementById("emptyMsg")?.remove();
  output.innerHTML = "<div class='loading'>⚡ Generating ideas...</div>";
 fetch("https://ai-backend-crm-6xh4.onrender.com/generate",{
