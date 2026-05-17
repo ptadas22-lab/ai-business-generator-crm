@@ -88,16 +88,26 @@ function startBusiness(name, location, profit) {
   })
   .then(res => res.json())
   .then(data => {
-console.log("PLAN RESPONSE:", data);  // 👈 ADD HERE
-  const raw = data.plan;
+    console.log("PLAN RESPONSE:", data);
 
-if (!raw || raw.length < 20) {
-  output.innerHTML = "⚠️ No data received from AI";
-  return;
-}
-const formatted = raw
-  .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
-  .replace(/\n/g, "<br>");
+    // ✅ FIX 1: handle missing response properly
+    if (!data || typeof data.plan !== "string") {
+      output.innerHTML = "❌ Invalid response from backend";
+      return;
+    }
+
+    const raw = data.plan.trim();
+
+    // ✅ FIX 2: only block if EMPTY (not small text)
+    if (raw.length === 0) {
+      output.innerHTML = "⚠️ Empty response from AI";
+      return;
+    }
+
+    // ✅ format content
+    const formatted = raw
+      .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
+      .replace(/\n/g, "<br>");
 
     output.innerHTML = `
       <div class="plan">
@@ -113,10 +123,10 @@ const formatted = raw
     `;
   })
   .catch(err => {
+    console.error("FRONTEND ERROR:", err);
     output.innerHTML = "❌ Error: " + err.message;
   });
 }
-
 // Save Idea
 function saveIdea() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
