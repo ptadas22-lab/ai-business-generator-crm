@@ -89,12 +89,14 @@ function startBusiness(name, location, profit) {
   .then(res => res.json())
   .then(data => {
 
-   const text = data.plan || "";
+  const raw = data.plan;
 
-    // simple formatting (convert headings)
-    const safeText = data.plan || "No data received";
+if (!raw || raw.includes("AI not configured")) {
+  output.innerHTML = "⚠️ AI not working. Check backend API key.";
+  return;
+}
 
-const formatted = safeText
+const formatted = raw
   .replace(/\*\*(.*?)\*\*/g, "<h3>$1</h3>")
   .replace(/\n/g, "<br>");
 
