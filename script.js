@@ -88,7 +88,7 @@ function startBusiness(name, location, profit) {
   })
   .then(res => res.json())
   .then(data => {
-.then(data => {
+
   console.log("PLAN RESPONSE:", data);  // 👈 ADD HERE
   const raw = data.plan;
 
