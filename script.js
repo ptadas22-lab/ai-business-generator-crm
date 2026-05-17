@@ -168,7 +168,7 @@ function renderSaved(data) {
   const allData = JSON.parse(localStorage.getItem("ideas")) || [];
 
   if (data.length === 0) {
-    savedDiv.innerHTML = "<p>No matching ideas</p>";
+    savedDiv.innerHTML = "<p style='opacity:0.6;'>No ideas found 🚫</p>";
     return;
   }
 
