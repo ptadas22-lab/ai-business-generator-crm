@@ -97,7 +97,7 @@ function startBusiness(name, location, profit) {
 // Save Idea
 function saveIdea() {
   let saved = JSON.parse(localStorage.getItem("ideas")) || [];
-
+showTab('saved');
   let newIdea = {
     name: document.getElementById("type").value,
     location: document.getElementById("location").value,
